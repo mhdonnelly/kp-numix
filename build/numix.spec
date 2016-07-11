@@ -1,9 +1,9 @@
 # numix-icon-theme
-%global commit0 101307fba4bc10793d8a5a0afe3af48e5bd195ca
+%global commit0 72c00cb61622e4a0c00243eda405746866dd82f9
 # numix-icon-theme-circle
-%global commit1 475d6490e3ef2fe7474493aa53d63bb40b182de5
+%global commit1 ae60ceabef8e25bf8fdea0196eecb004d4ef4483
 # Numix gtk theme
-%global commit2 bde0a7364864b0e3b8265c5b13969757295e1e17
+%global commit2 bd780f03d408f5ff8e7e6851a2572b291d713a95
 
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
@@ -11,12 +11,12 @@
 
 Name:		numix
 Version:	1010
-Release:	6.git%{shortcommit0}%{dist}
+Release:	7.git%{shortcommit0}%{dist}
 Summary:	Numix Project
 
 Source0:	https://github.com/numixproject/numix-icon-theme/archive/%{commit0}.tar.gz#/numix-icon-theme-%{shortcommit0}.tar.gz
 Source1:	https://github.com/numixproject/numix-icon-theme-circle/archive/%{commit1}.tar.gz#/numix-icon-theme-circle-%{shortcommit1}.tar.gz
-Source2:	https://github.com/shimmerproject/Numix/archive/%{commit2}.tar.gz#/Numix-%{shortcommit2}.tar.gz
+Source2:	https://github.com/numixproject/numix-gtk-theme/archive/%{commit2}.tar.gz#/numix-gtk-theme-%{shortcommit2}.tar.gz
 
 Group:		User Interface/Desktops
 License:	GPLv3
@@ -59,12 +59,10 @@ Numix is a modern flat theme with a combination of light and dark elements. It s
 %setup -q -c %{name}-%{version}-%{release} -D -T -a 2
 
 %build
-cd Numix-%{commit2}
-make
 
 %install
-cd Numix-%{commit2}
-make install DESTDIR=%{buildroot}
+cd numix-gtk-theme-%{commit2}
+%{make_install}
 cd ..
 
 install -d %{buildroot}%{_datadir}/icons
@@ -88,10 +86,14 @@ cp -r numix-icon-theme-circle-%{commit1}/Numix-Circle-Light %{buildroot}%{_datad
 %{_datadir}/icons/Numix-Circle-Light
 
 %files gtk-theme
-%doc Numix-%{commit2}/LICENSE Numix-%{commit2}/README.md Numix-%{commit2}/CREDITS
+%doc numix-gtk-theme-%{commit2}/LICENSE numix-gtk-theme-%{commit2}/README.md numix-gtk-theme-%{commit2}/CREDITS
 %{_datadir}/themes/Numix
 
 %changelog
+* Mon Jul 11 2016 Chris Smart <csmart@kororaproject.org> - 0.1.0-7
+- Fix the spec file
+- Update to latest upstream commits, adds missing GNOME icons
+
 * Sat Apr 16 2016 Sascha Spreitzer <sspreitz@redhat.com> - 0.1.0-6
 - adjust groups and tabstops
 
