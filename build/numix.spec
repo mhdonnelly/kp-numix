@@ -1,9 +1,9 @@
 # numix-icon-theme
-%global commit0 e03eb71454c176a98733eafa268ff79995f8159d
+%global commit0 5890eebcf6a4dd371c3d41c6fa9c09302dc42948
 # numix-icon-theme-circle
-%global commit1 ba72743b0ee78cf56585bb498eb59e83d0de17a2
+%global commit1 34a2f90d8f62b9d5bfe52e39e36d3e9e17cb6771
 # Numix gtk theme
-%global commit2 690532bd4e45d4bc334e90467f7c354efe30840f
+%global commit2 f2425ca2fbdb33ed09ae7f2fd20e95b890e9a270
 
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
@@ -11,7 +11,7 @@
 
 Name:		numix
 Version:	1010
-Release:	9.git%{shortcommit0}%{dist}
+Release:	10.git%{shortcommit0}%{dist}
 Summary:	Numix Project
 
 Source0:	https://github.com/numixproject/numix-icon-theme/archive/%{commit0}.tar.gz#/numix-icon-theme-%{shortcommit0}.tar.gz
@@ -90,6 +90,9 @@ cp -r numix-icon-theme-circle-%{commit1}/Numix-Circle-Light %{buildroot}%{_datad
 %{_datadir}/themes/Numix
 
 %changelog
+* Tue Aug 22 2017 Ian Firns <firnsy@kororaproject.org> - 0.1.0-10
+- Update to latest upstream commits
+
 * Fri Nov 11 2016 Chris Smart <csmart@kororaproject.org> - 0.1.0-9
 - Update to latest upstream commits
 
